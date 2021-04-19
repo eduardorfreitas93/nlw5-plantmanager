@@ -11,14 +11,6 @@ import wateringImg from '../assets/watering.png';
 import colors from '../styles/colors';
 
 export default function Welcome(): JSX.Element {
-  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-  function teste() {
-    arr.map(item => item);
-  }
-
-  teste();
-
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>
