@@ -27,7 +27,7 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "prefer-arrow-callback": "error",
-    "no-console": "warn",
+    "no-console": "error",
     "react/jsx-filename-extension": [
       1,
       {
