@@ -1,14 +1,17 @@
 import React from 'react';
+import { Feather } from '@expo/vector-icons';
 import {
   Text,
   Image,
   TouchableOpacity,
   StyleSheet,
   SafeAreaView,
+  Dimensions,
 } from 'react-native';
 
 import wateringImg from '../assets/watering.png';
 import colors from '../styles/colors';
+import fonts from '../styles/fonts';
 
 export default function Welcome(): JSX.Element {
   return (
@@ -19,7 +22,7 @@ export default function Welcome(): JSX.Element {
         de forma facil
       </Text>
 
-      <Image source={wateringImg} style={styles.image} />
+      <Image source={wateringImg} style={styles.image} resizeMode="contain" />
 
       <Text style={styles.subTitle}>
         Nao esqueca mais de tegar suas plantas. nos cuidamos de lembrar voce
@@ -27,7 +30,7 @@ export default function Welcome(): JSX.Element {
       </Text>
 
       <TouchableOpacity style={styles.button}>
-        <Text>teste</Text>
+        <Feather name="chevron-right" style={styles.iconButton} />
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -37,7 +40,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
   title: {
     fontSize: 32,
@@ -45,6 +48,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: colors.heading,
     marginTop: 38,
+    fontFamily: fonts.heading,
+    lineHeight: 38,
   },
   subTitle: {
     fontSize: 18,
@@ -61,10 +66,14 @@ const styles = StyleSheet.create({
     height: 56,
     width: 56,
   },
+  iconButton: {
+    fontSize: 30,
+    color: colors.white,
+  },
   image: {
-    width: 292,
-    height: 284,
+    height: Dimensions.get('window').width * 0.7,
   },
 });
 
 // #missaoespacial
+// #embuscadoproximonivel

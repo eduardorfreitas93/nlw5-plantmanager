@@ -28,6 +28,9 @@
     "react-hooks/exhaustive-deps": "warn",
     "prefer-arrow-callback": "error",
     "no-console": "warn",
+    "import/prefer-default-export": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
     "react/jsx-filename-extension": [
       1,
       {
@@ -49,9 +52,10 @@
       "off"
     ],
     "react/react-in-jsx-scope": "off",
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   },
-  "settings": { // Para que o React consiga entender arquivos Typescript é necessário acrescentar essa configuração, por padrão vai apresentar um erro dizendo que as importações de arquivos Typescript não foram resolvidas. (eslint-import-resolver-typescript)
+  "settings": { // Para que o React consiga entender arquivos Typescript, por padrão vai apresentar um erro dizendo que as importações de arquivos Typescript não foram resolvidas. (eslint-import-resolver-typescript)
     "import/resolver": {
       "typescript": {}
     }
