@@ -1,5 +1,6 @@
 {
   "main": "index.js",
+  "version": "1.0.0",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -8,7 +9,7 @@
     "lint": "eslint ./src",
     "test": "jest",
     "prepare": "husky install",
-    "release": "standard-version"
+    "release": "./node_modules/standard-version/bin/cli.js"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.1.0",
