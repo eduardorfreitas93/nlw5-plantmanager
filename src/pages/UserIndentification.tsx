@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   SafeAreaView,
   View,
@@ -13,13 +14,19 @@ import {
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
+import { ApplicationState } from '../store';
+import { setName } from '../store/ducks/user/actions';
+
 import Button from '../componentes/Button';
 
 export default function UserIndentification(): JSX.Element {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
-  const [name, setName] = useState<string>();
+  const name = useSelector(
+    (state: ApplicationState) => state.user.dataUser.name,
+  );
 
   function handleInputBlur() {
     setIsFocused(false);
@@ -31,7 +38,7 @@ export default function UserIndentification(): JSX.Element {
   }
 
   function handleInputChange(value: string) {
-    setName(value);
+    dispatch(setName({ name: value }));
     setIsFilled(true);
   }
 
@@ -62,6 +69,7 @@ export default function UserIndentification(): JSX.Element {
               onBlur={handleInputBlur}
               onFocus={handleInputFocus}
               onChangeText={handleInputChange}
+              value={name}
             />
 
             <View style={styles.footer}>

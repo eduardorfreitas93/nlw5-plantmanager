@@ -1,5 +1,5 @@
-/* eslint camelcase: "off" */
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   View,
   Text,
@@ -11,35 +11,32 @@ import {
 import Header from '../componentes/Header';
 import EnviromentButton from '../componentes/EnviromentButton';
 import Load from '../componentes/Load';
+import PlantCardPrimary from '../componentes/PlantCardPrimary';
+
+import { IPlant } from '../store/ducks/plants/types';
 
 import api from '../services/api';
 
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
-import PlantCardPrimary from '../componentes/PlantCardPrimary';
-
-interface EnviromentProps {
-  key: string;
-  title: string;
-}
-
-interface PlantProps {
-  id: number;
-  name: string;
-  about: string;
-  water_tips: string;
-  photo: string;
-  environments: [string];
-  frequency: {
-    times: number;
-    repeat_every: string;
-  };
-}
+import { ApplicationState } from '../store';
+import { addPlants, setFilteredPlants } from '../store/ducks/plants/actions';
+import { addEnvironments } from '../store/ducks/environments/actions';
 
 export default function PlanSelect(): JSX.Element {
-  const [enviroment, setEnviroment] = useState<EnviromentProps[]>([]);
-  const [plants, setPlants] = useState<PlantProps[]>([]);
-  const [filteredPlants, setFilteredPlants] = useState<PlantProps[]>([]);
+  const dispatch = useDispatch();
+  const plants = useSelector(
+    (state: ApplicationState) => state.plants.dataPlants,
+  );
+
+  const filteredPlants = useSelector(
+    (state: ApplicationState) => state.plants.dataFilteredPlants,
+  );
+
+  const enviroment = useSelector(
+    (state: ApplicationState) => state.environments.dataEnvironments,
+  );
+
   const [enviromentSelected, setEnviromentSelected] = useState('all');
   const [loading, setLoading] = useState(true);
 
@@ -50,32 +47,17 @@ export default function PlanSelect(): JSX.Element {
     setEnviromentSelected(key);
 
     if (key === 'all') {
-      setFilteredPlants(plants);
+      dispatch(setFilteredPlants(plants));
       return;
     }
 
     const filtered = plants.filter(plant => plant.environments.includes(key));
 
-    setFilteredPlants(filtered);
+    dispatch(setFilteredPlants(filtered));
   }
 
   async function fetchPlants(): Promise<void> {
-    const { data } = await api.get(
-      `/plants?_sort=name&_order=asc&_page=${page}&_limit=8`,
-    );
-
-    if (!data) {
-      setLoading(true);
-      return;
-    }
-
-    if (page > 1) {
-      setPlants(oldValue => [...oldValue, ...data]);
-      setFilteredPlants(oldValue => [...oldValue, ...data]);
-    } else {
-      setPlants(data);
-      setFilteredPlants(data);
-    }
+    await dispatch(addPlants(page));
     setLoading(false);
     setLoadingMore(false);
   }
@@ -85,30 +67,15 @@ export default function PlanSelect(): JSX.Element {
 
     setLoadingMore(true);
     setPage(oldValue => oldValue + 1);
-    fetchPlants();
   }
 
   useEffect(() => {
-    async function fetchEnviroment() {
-      const { data } = await api.get(
-        '/plants_environments?_sort=title&_order=asc',
-      );
-
-      setEnviroment([
-        {
-          key: 'all',
-          title: 'Todos',
-        },
-        ...data,
-      ]);
-    }
-
-    fetchEnviroment();
+    dispatch(addEnvironments());
   }, []);
 
   useEffect(() => {
     fetchPlants();
-  }, []);
+  }, [page]);
 
   if (loading) return <Load />;
 
@@ -191,5 +158,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-// #astronautas

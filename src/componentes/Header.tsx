@@ -1,17 +1,24 @@
 import React from 'react';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { useSelector } from 'react-redux';
 import { StyleSheet, Text, Image, View } from 'react-native';
 
 import useImg from '../assets/watering.png';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
+import { ApplicationState } from '../store';
+
 export default function Header(): JSX.Element {
+  const name = useSelector(
+    (state: ApplicationState) => state.user.dataUser.name,
+  );
+
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.greeting}>Olá,</Text>
-        <Text style={styles.userName}>edu</Text>
+        <Text style={styles.userName}>{name}</Text>
       </View>
       <Image source={useImg} style={styles.image} />
     </View>
@@ -28,9 +35,9 @@ const styles = StyleSheet.create({
     marginTop: getStatusBarHeight(),
   },
   image: {
-    width: 70,
-    height: 70,
-    borderRadius: 40,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
   },
   greeting: {
     fontSize: 32,
