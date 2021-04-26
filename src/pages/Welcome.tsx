@@ -1,5 +1,6 @@
 import React from 'react';
 import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import {
   Text,
   Image,
@@ -14,6 +15,12 @@ import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
 export default function Welcome(): JSX.Element {
+  const navigation = useNavigation();
+
+  function handleStart() {
+    navigation.navigate('UserIndentification');
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>
@@ -29,7 +36,7 @@ export default function Welcome(): JSX.Element {
         sempre que precisar.
       </Text>
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={handleStart}>
         <Feather name="chevron-right" style={styles.iconButton} />
       </TouchableOpacity>
     </SafeAreaView>
@@ -56,6 +63,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingHorizontal: 20,
     color: colors.heading,
+    fontFamily: fonts.text,
   },
   button: {
     backgroundColor: colors.green,

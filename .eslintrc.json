@@ -53,7 +53,8 @@
     ],
     "react/react-in-jsx-scope": "off",
     "prettier/prettier": "error",
-    "@typescript-eslint/explicit-module-boundary-types": "off"
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "react/jsx-props-no-spreading": ["off"]
   },
   "settings": { // Para que o React consiga entender arquivos Typescript, por padrão vai apresentar um erro dizendo que as importações de arquivos Typescript não foram resolvidas. (eslint-import-resolver-typescript)
     "import/resolver": {

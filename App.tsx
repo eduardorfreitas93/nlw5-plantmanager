@@ -10,7 +10,7 @@ import {
 } from '@expo-google-fonts/jost';
 
 import store from './src/store';
-import Welcome from './src/pages/Welcome';
+import Routes from './src/routes';
 
 export default function App(): JSX.Element {
   const [fontsLoaded] = useFonts({
@@ -22,7 +22,7 @@ export default function App(): JSX.Element {
 
   return (
     <Provider store={store}>
-      <Welcome />
+      <Routes />
     </Provider>
   );
 }
