@@ -1,13 +1,18 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
 
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
 import Button from '../componentes/Button';
+import { ApplicationState } from '../store';
 
 export default function Confirmation(): JSX.Element {
+  const userName = useSelector(
+    (state: ApplicationState) => state.user.dataUser.name,
+  );
   const navigation = useNavigation();
 
   function handleMoveOn() {
@@ -19,7 +24,7 @@ export default function Confirmation(): JSX.Element {
       <View style={styles.content}>
         <Text style={styles.emoji}>😃</Text>
 
-        <Text style={styles.title}>Prontinho</Text>
+        <Text style={styles.title}>Prontinho {userName}</Text>
 
         <Text style={styles.subtitle}>
           Agora vamos comecar a cuidar das suas plantinhas com muito cuidado.
