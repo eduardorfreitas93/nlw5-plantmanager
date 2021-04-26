@@ -9,7 +9,7 @@
     "lint": "eslint ./src",
     "test": "jest",
     "prepare": "husky install",
-    "release": "HUSKY_SKIP_HOOKS=1 ./node_modules/standard-version/bin/cli.js"
+    "release": "HUSKY_SKIP_HOOKS=2 ./node_modules/standard-version/bin/cli.js"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.1.0",
