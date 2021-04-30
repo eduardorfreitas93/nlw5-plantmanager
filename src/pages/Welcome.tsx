@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-around',
+    backgroundColor: colors.background,
   },
   title: {
     fontSize: 32,
