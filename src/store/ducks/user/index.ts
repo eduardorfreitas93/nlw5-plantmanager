@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 
 import { UserState, UserTypes } from './types';
 
-const INITIAL_STATE: UserState = {
+export const INITIAL_STATE: UserState = {
   dataUser: {
     name: '',
   },

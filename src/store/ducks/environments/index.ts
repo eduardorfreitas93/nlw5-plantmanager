@@ -5,7 +5,7 @@ import {
   EnvironmentsTypes,
 } from './types';
 
-const INITIAL_STATE: EnvironmentsState = {
+export const INITIAL_STATE: EnvironmentsState = {
   dataEnvironments: [],
 };
 

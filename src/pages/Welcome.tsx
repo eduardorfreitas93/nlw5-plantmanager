@@ -36,7 +36,11 @@ export default function Welcome(): JSX.Element {
         sempre que precisar.
       </Text>
 
-      <TouchableOpacity style={styles.button} onPress={handleStart}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={handleStart}
+        testID="button"
+      >
         <Feather name="chevron-right" style={styles.iconButton} />
       </TouchableOpacity>
     </SafeAreaView>

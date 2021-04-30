@@ -18,7 +18,9 @@ export default function Header(): JSX.Element {
     <View style={styles.container}>
       <View>
         <Text style={styles.greeting}>Olá,</Text>
-        <Text style={styles.userName}>{name}</Text>
+        <Text style={styles.userName} testID="textName">
+          {name}
+        </Text>
       </View>
       <Image source={useImg} style={styles.image} />
     </View>

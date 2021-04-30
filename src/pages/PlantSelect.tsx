@@ -13,10 +13,6 @@ import EnviromentButton from '../componentes/EnviromentButton';
 import Load from '../componentes/Load';
 import PlantCardPrimary from '../componentes/PlantCardPrimary';
 
-import { IPlant } from '../store/ducks/plants/types';
-
-import api from '../services/api';
-
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 import { ApplicationState } from '../store';
@@ -77,7 +73,7 @@ export default function PlanSelect(): JSX.Element {
     fetchPlants();
   }, [page]);
 
-  if (loading) return <Load />;
+  if (loading) return <Load testID="load" />;
 
   return (
     <View style={styles.container}>
@@ -90,10 +86,12 @@ export default function PlanSelect(): JSX.Element {
 
       <View>
         <FlatList
+          testID="enviromentList"
           data={enviroment}
           keyExtractor={item => item.key}
           renderItem={({ item }) => (
             <EnviromentButton
+              testID="enviromentItem"
               title={item.title}
               active={item.key === enviromentSelected}
               onPress={() => handelEnviromentSelected(item.key)}
@@ -107,6 +105,7 @@ export default function PlanSelect(): JSX.Element {
 
       <View style={{ flex: 1 }}>
         <FlatList
+          testID="plantsList"
           data={filteredPlants}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => <PlantCardPrimary data={item} />}
@@ -117,7 +116,14 @@ export default function PlanSelect(): JSX.Element {
             handelFetchMore(distanceFromEnd)
           }
           ListFooterComponent={
-            loadingMore ? <ActivityIndicator color={colors.green} /> : <></>
+            loadingMore ? (
+              <ActivityIndicator
+                color={colors.green}
+                testID="activityIndicator"
+              />
+            ) : (
+              <></>
+            )
           }
         />
       </View>

@@ -20,7 +20,9 @@ export default function PlantCardPrimary({
   return (
     <RectButton style={styles.container} {...rest}>
       <SvgFromUri uri={data.photo} width={70} height={70} />
-      <Text style={styles.title}>{data.name}</Text>
+      <Text style={styles.title} testID="text">
+        {data.name}
+      </Text>
     </RectButton>
   );
 }

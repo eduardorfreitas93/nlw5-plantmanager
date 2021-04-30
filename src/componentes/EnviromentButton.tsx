@@ -22,9 +22,15 @@ export default function EnviromentButton({
   return (
     <RectButton
       style={[styles.container, active && styles.containerActive]}
+      testID="button"
       {...rest}
     >
-      <Text style={[styles.title, active && styles.titleActive]}>{title}</Text>
+      <Text
+        style={[styles.title, active && styles.titleActive]}
+        testID="textButton"
+      >
+        {title}
+      </Text>
     </RectButton>
   );
 }

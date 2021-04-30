@@ -51,6 +51,7 @@ export default function UserIndentification(): JSX.Element {
       <KeyboardAvoidingView
         style={styles.container}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        testID="keyboardView"
       >
         <View style={styles.content}>
           <View style={styles.form}>
@@ -63,17 +64,22 @@ export default function UserIndentification(): JSX.Element {
             <TextInput
               style={[
                 styles.input,
-                (isFocused || isFilled) && { borderColor: colors.green },
+                (isFocused || isFilled) && { borderBottomColor: colors.green },
               ]}
               placeholder="Digite o seu nome"
               onBlur={handleInputBlur}
               onFocus={handleInputFocus}
               onChangeText={handleInputChange}
               value={name}
+              testID="input"
             />
 
             <View style={styles.footer}>
-              <Button title="Confirmar" onPress={handleConfirmation} />
+              <Button
+                title="Confirmar"
+                onPress={handleConfirmation}
+                testID="button"
+              />
             </View>
           </View>
         </View>

@@ -16,7 +16,9 @@ interface ButtonProps extends TouchableOpacityProps {
 export default function Button({ title, ...rest }: ButtonProps): JSX.Element {
   return (
     <TouchableOpacity style={styles.container} {...rest}>
-      <Text style={styles.text}>{title}</Text>
+      <Text style={styles.text} testID="textButton">
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 }

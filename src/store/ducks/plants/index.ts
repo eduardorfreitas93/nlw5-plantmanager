@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 
 import { PlantsState, PlantsTypes, PlantsAction } from './types';
 
-const INITIAL_STATE: PlantsState = {
+export const INITIAL_STATE: PlantsState = {
   dataPlants: [],
   dataFilteredPlants: [],
 };
